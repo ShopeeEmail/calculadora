@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Calculadora</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+</head>
+<body>
+        <div class="fundo">
+            <div class="calculadora">
+                <h2>Calculadora</i></h2>
+                <p id="resultado"></p>
+                    <table>                 
+                        <tr>
+                            <td><button class="botao" onclick="clean()">C</td>
+                            <td><button class="botao" onclick="back()"><</td>
+                            <td><button class="botao" onclick="insereGood()">Good</button></td>
+                            <td><button class="botao" onclick="insereBad()">Bad</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="botao" onclick="insert('7')">7</button></td>
+                            <td><button class="botao" onclick="insert('8')">8</button></td>
+                            <td><button class="botao" onclick="insert('9')">9</button></td>
+                            <td rowspan="2"><button class="botao" style="height: 106px;" onclick="mostrarDiferenca()">Dif</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="botao" onclick="insert('4')">4</button></td>
+                            <td><button class="botao" onclick="insert('5')">5</button></td>
+                            <td><button class="botao" onclick="insert('6')">6</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="botao" onclick="insert('1')">1</button></td>
+                            <td><button class="botao" onclick="insert('2')">2</button></td>
+                            <td><button class="botao" onclick="insert('3')">3</button></td>
+                            <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button class="botao" style="width: 150px;" onclick="insert('0')">0</button></td>
+                            <td><button class="botao" onclick="insert('.')">.</button></td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+
+    <script>
+        let good = 0;
+        let bad = 0;
+
+        function insert(num)
+        {
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num;
+        }
+
+        function clean()
+        {
+            document.getElementById('resultado').innerHTML = "";
+        }
+
+        function back()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+        }
+
+        function insereGood(){
+            good = document.getElementById('resultado').innerHTML;
+            console.log(good)
+            clean();
+        }
+
+        function insereBad(){
+            bad = document.getElementById('resultado').innerHTML;
+            console.log(bad)
+            clean();
+        }
+
+        function mostrarDiferenca(){
+            alert(`Você precisa de ${14} Goods para alcançar os 70%`)
+        }
+
+        function calcular()
+        {
+            let goodInt = parseInt(good);
+            let badInt = parseInt(bad);
+
+            var resultado = (goodInt/(goodInt+badInt));
+            if(resultado)
+            {
+                document.getElementById('resultado').innerHTML = (resultado * 100).toString() + '%';
+            }
+            else
+            {
+                document.getElementById('resultado').innerHTML = "Nada..."
+            }
+        }
+    </script>
+</body>
+</html>
