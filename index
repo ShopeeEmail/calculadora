@@ -74,7 +74,6 @@
 
         function insereGood(){
             good = document.getElementById('resultado').innerHTML;
-            console.log(good)
             clean();
             if(bad != '0'){
                 calcular();
@@ -83,7 +82,6 @@
 
         function insereBad(){
             bad = document.getElementById('resultado').innerHTML;
-            console.log(bad)
             clean();
             if(good != '0'){
                 calcular();
@@ -94,7 +92,6 @@
             let goodInt = parseInt(good);
             let soma = goodInt + 1;
             good = soma.toString();
-            console.log(good)
             calcular();
         }
 

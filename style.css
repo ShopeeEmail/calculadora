@@ -4,7 +4,7 @@
 }
 
 .fundo{
-    background-color: #a7a7a7;
+    background-color: #DCDCDC;
     height: 100vh;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
@@ -38,7 +38,7 @@
 
 #resultado{
     width: 295px;
-    background-color: white;
+    background-color: #DCDCDC;
     height: 30px;
     margin: 5px;
     font-size: 25px;
