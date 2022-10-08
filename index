@@ -10,11 +10,11 @@
 <body>
         <div class="fundo">
             <div class="calculadora">
-                <h2>Calculadora</i></h2>
+                <h2>Calculadora C-Sat (%)</i></h2>
                 <p id="resultado"></p>
                     <table>                 
                         <tr>
-                            <td><button class="botao" onclick="clean()">C</td>
+                            <td><button class="botao" onclick="zerar()">C</td>
                             <td><button class="botao" onclick="back()"><</td>
                             <td><button class="botao" onclick="insereGood()">Good</button></td>
                             <td><button class="botao" onclick="insereBad()">Bad</button></td>
@@ -23,12 +23,13 @@
                             <td><button class="botao" onclick="insert('7')">7</button></td>
                             <td><button class="botao" onclick="insert('8')">8</button></td>
                             <td><button class="botao" onclick="insert('9')">9</button></td>
-                            <td rowspan="2"><button class="botao" style="height: 106px;" onclick="mostrarDiferenca()">Dif</button></td>
+                            <td><button class="botao" onclick="incrementa()">+</button></td>
                         </tr>
                         <tr>
                             <td><button class="botao" onclick="insert('4')">4</button></td>
                             <td><button class="botao" onclick="insert('5')">5</button></td>
                             <td><button class="botao" onclick="insert('6')">6</button></td>
+                            <td><button class="botao" onclick="decrementa()">-</button></td>
                         </tr>
                         <tr>
                             <td><button class="botao" onclick="insert('1')">1</button></td>
@@ -37,8 +38,7 @@
                             <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><button class="botao" style="width: 150px;" onclick="insert('0')">0</button></td>
-                            <td><button class="botao" onclick="insert('.')">.</button></td>
+                            <td colspan="3"><button class="botao" style="width: 230px;" onclick="insert('0')">0</button></td>
                         </tr>
                     </table>
             </div>
@@ -59,6 +59,13 @@
             document.getElementById('resultado').innerHTML = "";
         }
 
+        function zerar(){
+            document.getElementById('resultado').innerHTML = "";
+            
+            good = '0';
+            bad = '0';
+        }
+
         function back()
         {
             var resultado = document.getElementById('resultado').innerHTML;
@@ -69,16 +76,33 @@
             good = document.getElementById('resultado').innerHTML;
             console.log(good)
             clean();
+            if(bad != '0'){
+                calcular();
+            }
         }
 
         function insereBad(){
             bad = document.getElementById('resultado').innerHTML;
             console.log(bad)
             clean();
+            if(good != '0'){
+                calcular();
+            }
         }
 
-        function mostrarDiferenca(){
-            alert(`Você precisa de ${14} Goods para alcançar os 70%`)
+        function incrementa(){
+            let goodInt = parseInt(good);
+            let soma = goodInt + 1;
+            good = soma.toString();
+            console.log(good)
+            calcular();
+        }
+
+        function decrementa(){
+            let goodInt = parseInt(good);
+            let soma = goodInt - 1;
+            good = soma;
+            calcular();
         }
 
         function calcular()
@@ -89,12 +113,17 @@
             var resultado = (goodInt/(goodInt+badInt));
             if(resultado)
             {
-                document.getElementById('resultado').innerHTML = (resultado * 100).toString() + '%';
+                document.getElementById('resultado').innerHTML = resultado * 100;
             }
             else
             {
                 document.getElementById('resultado').innerHTML = "Nada..."
             }
+
+            if(resultado >= 0.7){
+                alert(`Para atingir os 70% você precisa de ${goodInt} avaliações posítivas com ${badInt} avaliações negativas`)
+            }
+            
         }
     </script>
 </body>
